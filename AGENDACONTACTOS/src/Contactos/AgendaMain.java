@@ -184,8 +184,11 @@ public static final String black = "\u001B[30m";
 					agenda.remove(contactoModificar);
 					System.out.println("Introduce el contacto a añadir: ");
 					String contactoAnadir = entrada.next();
-					agenda.put(contactoAnadir,numeroContacto );
-				}
+					agenda.remove(contactoModificar); 
+					agenda.put(contactoAnadir, numeroUsuario);//HACER QUE SE CAMBIE EL NUMERO DEL CONTACTO
+					System.out.println(agenda);
+				}else
+					System.err.println("La agenda no contiene ese contacto.");
 				break;
 			case 2:
 				
