@@ -1,5 +1,6 @@
 package Contactos;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -329,17 +330,38 @@ public static final String black = "\u001B[30m";
 	}
 	
 	public static void Opcion5() {
-	
+		
+		if(!agenda.isEmpty()) {
+			
+			System.out.println("Introduzca el contacto que desea buscar: ");
+			String contactoBuscar = entrada.next();
+			
+			if(agenda.containsKey(contactoBuscar)) {
+				System.out.println("El contacto " + contactoBuscar + " se encuentra en la agenda.");
+			}else
+				System.err.println("El contacto " + contactoBuscar + " no se encuentra en la agenda.");
+			
+		} else {
+			
+			System.err.println("La agenda no tiene contactos, introdúzcalos.");
+			
+		}
 		
 	}
 	
 	public static void Opcion6() {
 		
+		System.out.println("Introduzca una letra: ");
+		String letra = entrada.next();
 		
+		char letraGuardar [] = new char [letra.length()];
+		System.out.println(Arrays.toString(letraGuardar));
 	}
 	
 	public static void Opcion7() {
 		
+		System.out.println("Redirigiendo al menú principal...");
+		Agenda();
 		
 	}
 
