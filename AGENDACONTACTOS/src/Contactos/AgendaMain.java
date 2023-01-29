@@ -185,12 +185,41 @@ public static final String black = "\u001B[30m";
 					System.out.println("Introduce el contacto a añadir: ");
 					String contactoAnadir = entrada.next();
 					agenda.remove(contactoModificar); 
-					agenda.put(contactoAnadir, numeroUsuario);//HACER QUE SE CAMBIE EL NUMERO DEL CONTACTO
+					//agenda.put(contactoAnadir, numeroUsuario);//HACER QUE SE CAMBIE EL NUMERO DEL CONTACTO
 					System.out.println(agenda);
 				}else
 					System.err.println("La agenda no contiene ese contacto.");
 				break;
 			case 2:
+				System.out.println("Introduce el contacto cuyo número quieres modificar: ");
+				String contacto = entrada.next();
+				
+				
+				if(agenda.containsKey(contacto)) {
+				
+					System.out.println("Introduce su nuevo número: ");
+					String numeroModificar = entrada.next();
+					
+					if(contacto.equals("Emergencias") || contacto.equals("Policía")) {
+						
+						agenda.put(contacto, numeroModificar);
+						System.out.println("El contacto se ha modificado con éxito: " + agenda);
+						
+					}else if (numeroModificar.length()!= 9){
+					
+						System.err.println("Número introducido no válido.");
+					}
+					else {
+					
+						agenda.put(contacto, numeroModificar);
+						System.out.println("El contacto se ha modificado con éxito: " + agenda);
+				}
+					
+					
+				}else {
+				
+				System.err.println("La agenda no contiene ese contacto.");
+			}
 				
 				break;
 			case 3:
