@@ -134,6 +134,7 @@ public static final String black = "\u001B[30m";
 			if(nombreContacto.equals("Emergencias") || nombreContacto.equals("Policía")) {
 				
 				agenda.put(nombreContacto, numeroContacto);
+				
 				System.out.println("Contactos: " +  agenda );
 				
 			}else if (numeroContacto.length()!= 9){
@@ -143,6 +144,7 @@ public static final String black = "\u001B[30m";
 			else {
 			
 			agenda.put(nombreContacto, numeroContacto);
+			
 			System.out.println("Contactos: " +  agenda );
 		}
 		
@@ -164,89 +166,166 @@ public static final String black = "\u001B[30m";
 	
 	public static void Opcion3() {
 		
-		if(agenda.isEmpty()) {
+		if(!agenda.isEmpty()) {
 			
-			System.err.println("La agenda está vacía, introduzca un contacto.");
-			//preguntar si quiere cambiar el nombre, número o ambas
-		}else
 			System.out.println("Elige entre estas dos opciones: ");
-			System.out.println("1. MODIFICAR CONTACTO");
-			System.out.println("2. MODIFICAR NUM DE CONTACTO");	
-			System.out.println("3. MODIFICAR AMBAS");
+			
+			System.out.println("1. MODIFICAR NOMBRE DEL CONTACTO");
+			
+			System.out.println("2. MODIFICAR NUMERO DEL CONTACTO");	
+			
+			System.out.println("3. MODIFICAR NOMBRE Y NÚMERO DEL CONTACTO");
+			
 			int modificacionUsuario = entrada.nextInt();
 			
 			switch (modificacionUsuario) {
+			
 			case 1:
+				
 				System.out.println("Introduce el contacto a modificar: ");
+				
 				String contactoModificar = entrada.next();
 				
 				if(agenda.containsKey(contactoModificar)) {
+					
 					agenda.remove(contactoModificar);
-					System.out.println("Introduce el contacto a añadir: ");
-					String contactoAnadir = entrada.next();
-					agenda.remove(contactoModificar); 
-					//agenda.put(contactoAnadir, numeroUsuario);//HACER QUE SE CAMBIE EL NUMERO DEL CONTACTO
-					System.out.println(agenda);
+					
+					System.out.println("Introduce el nuevo nombre: ");
+					
+					String contactoNombre = entrada.next();
+					
+			//		agenda.put(contactoNombre, numeroContacto); //COMO HACER QUE COJA EL NUMERO DE CONTACTO DEL APARTADO ANTERIOR
+					
+					System.out.println("Su cambio se ha realizado con éxito" + agenda);
+					
 				}else
+					
 					System.err.println("La agenda no contiene ese contacto.");
-				break;
-			case 2:
-				System.out.println("Introduce el contacto cuyo número quieres modificar: ");
-				String contacto = entrada.next();
 				
+				break;
+				
+			case 2:
+				
+				System.out.println("Introduce el contacto cuyo número quieres modificar: ");
+				
+				String contacto = entrada.next();
 				
 				if(agenda.containsKey(contacto)) {
 				
 					System.out.println("Introduce su nuevo número: ");
+					
 					String numeroModificar = entrada.next();
 					
 					if(contacto.equals("Emergencias") || contacto.equals("Policía")) {
 						
 						agenda.put(contacto, numeroModificar);
+						
 						System.out.println("El contacto se ha modificado con éxito: " + agenda);
 						
 					}else if (numeroModificar.length()!= 9){
 					
 						System.err.println("Número introducido no válido.");
+						
 					}
+					
 					else {
-					
+						
 						agenda.put(contacto, numeroModificar);
+						
 						System.out.println("El contacto se ha modificado con éxito: " + agenda);
+						
 				}
-					
-					
-				}else {
+			
+				}
+				else {
 				
 				System.err.println("La agenda no contiene ese contacto.");
+				
 			}
 				
 				break;
+				
 			case 3:
 				
+				System.out.println("Introduce el contacto que quieres cambiar: ");
+				
+				String contactoCambiar = entrada.next();
+				
+				if(agenda.containsKey(contactoCambiar)) {
+					
+					System.out.println("Introduce el contacto que quieres anadir: ");
+					
+					String contactoAnadir = entrada.next();
+				
+					System.out.println("Introduce el número del contacto a anadir.");
+					
+					String numeroTelefono = entrada.next();
+					
+					if(contactoAnadir.equals("Emergencias") || contactoAnadir.equals("Policía")) {
+						
+						agenda.remove(contactoCambiar);
+						
+						agenda.put(contactoAnadir, numeroTelefono);
+						
+						System.out.println("El contacto se ha cambiado con éxito " + agenda);
+						
+					} else if (numeroTelefono.length() != 9) {
+						
+						System.err.println("Número introducido inválido.");
+						
+					}else {
+						
+						agenda.remove(contactoCambiar);
+						
+						agenda.put(contactoAnadir, numeroTelefono);
+						
+						System.out.println("El contacto se ha cambiado con éxito " + agenda);
+						
+					}
+						
+				} else
+					
+					System.err.println("El contacto no se encuentra en la agenda.");
+				
 				break;
-
-
-			default:
+				
+			default: System.err.println("Opción escogida inválida.");
+			
 				break;
+				
 			}
-			
-			/*System.out.println("Introduzca el contacto a modificar: ");
-			
-			
-			if(agenda.containsKey(modificacionUsuario)) {
-				agenda.remove(modificacionUsuario);
-				System.out.println("Introduce el contacto que quieres añadir: ");
-				String contactoAñadir = entrada.next();
-				agenda.put(contactoAñadir, contactoAñadir)
-			}
-			System.out.println(agenda);*/
 		
+		}else
+			
+			System.err.println("La agenda está vacía, introduzca un contacto.");
+			
 	}
 	
 	public static void Opcion4() {
-	
 		
+		if(!agenda.isEmpty()) {
+			
+			System.out.println("Introduzca el contacto a eliminar: ");
+			
+			String contactoEliminar = entrada.next();
+			
+			if(agenda.containsKey(contactoEliminar)) {
+				
+				agenda.remove(contactoEliminar);
+				
+				System.out.println(agenda);
+				
+			} else
+				
+				System.err.println("El contacto no se encuentra en la agenda.");
+			
+		}
+		
+		else {
+			
+			System.err.println("La agenda no tiene contactos, introdúzcalos.");
+			
+		}
 	}
 	
 	public static void Opcion5() {
