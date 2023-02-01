@@ -1,6 +1,6 @@
 package Contactos;
 
-import java.util.Arrays;
+
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -193,7 +193,7 @@ public static final String black = "\u001B[30m";
 					
 					System.out.println("Introduce el nuevo nombre: ");
 					
-					String contactoNombre = entrada.next();
+				String contactoNombre = entrada.next();
 					
 			//		agenda.put(contactoNombre, numeroContacto); //COMO HACER QUE COJA EL NUMERO DE CONTACTO DEL APARTADO ANTERIOR
 					
@@ -351,11 +351,17 @@ public static final String black = "\u001B[30m";
 	
 	public static void Opcion6() {
 		
-		System.out.println("Introduzca una letra: ");
-		String letra = entrada.next();
+		if (!agenda.isEmpty()) {
+			
+			System.out.println("Introduce la letra que contienen los contactos que desea buscar: ");
+			String letraUsuario = entrada.next();
+			
+			
 		
-		char letraGuardar [] = new char [letra.length()];
-		System.out.println(Arrays.toString(letraGuardar));
+			
+			
+		}else 
+			System.err.println("La agenda no tiene contactos, introdúzcalos.");
 	}
 	
 	public static void Opcion7() {
